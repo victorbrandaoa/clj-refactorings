@@ -7,9 +7,10 @@ import subprocess
 import sys
 import json
 
-ANALYZER_PATH = "/home/victor/Documents/git/clj-refactorings/.agents/skills/smell-detection/scripts/arit"
 ALLOWED_RULES = [
     "production-doall",
+    "blocking-inside-go",
+    "conditional-build-up"
 ]
 
 def filter_results(raw_json: str) -> str:
@@ -29,17 +30,17 @@ def filter_results(raw_json: str) -> str:
 
     return json.dumps(filtered, indent=2)
 
-def run_analyzer(project_path: str) -> dict:
+def run_analyzer(analyzer_path: str, project_path: str) -> dict:
     """Run the arit analyzer on the given project path.
 
     Returns a dict with keys: success, output, errors.
     """
-    if not os.path.exists(ANALYZER_PATH):
-        return {"success": False, "output": "", "errors": f"Analyzer not found at {ANALYZER_PATH}"}
+    if not os.path.exists(analyzer_path):
+        return {"success": False, "output": "", "errors": f"Analyzer not found at {analyzer_path}"}
 
     try:
         result = subprocess.run(
-            [str(ANALYZER_PATH), "--format", "json", project_path],
+            [str(analyzer_path), "--format", "json", project_path],
             capture_output=True,
             text=True,
             timeout=120,
@@ -59,12 +60,13 @@ def run_analyzer(project_path: str) -> dict:
 
 
 def main():
-    if len(sys.argv) < 2:
-        print(f"Usage: {sys.argv[0]} <project_path>", file=sys.stderr)
+    if len(sys.argv) < 3:
+        print(f"Usage: {sys.argv[0]} <arit_path> <project_path>", file=sys.stderr)
         sys.exit(1)
 
-    project_path = sys.argv[1]
-    result = run_analyzer(project_path)
+    analyzer_path = sys.argv[1]
+    project_path = sys.argv[2]
+    result = run_analyzer(analyzer_path, project_path)
 
     if result["errors"]:
         print(result["errors"], file=sys.stderr)

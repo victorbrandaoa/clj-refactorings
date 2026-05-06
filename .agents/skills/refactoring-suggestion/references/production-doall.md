@@ -11,4 +11,11 @@ This code smell occurs when the doall function is used in production code to for
 
 # Suggestion
 
-Consider using eager operations (mapv, into, vec) or restructuring to avoid forcing evaluation.
+Consider using eager operations (e.g. `mapv`, `into`, `vec`) or restructuring to avoid forcing evaluation, for instance:
+
+```clj
+(defn print-evens []
+  (mapv println (filter even? (range 1000))))
+
+(print-evens)
+```
