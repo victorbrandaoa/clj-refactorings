@@ -261,4 +261,7 @@ Tests Coverage:
 [smell-name]: [number-of-tests-before] -> [number-of-tests-after]
   <!-- For each test found/created do: -->
   - [absolute-path-of-test-file-exercising-the-smell-before-and-after]:[test-line-before-and-after]
-```
+
+### Prompt 12
+
+Run /smell-refactor-pipeline over the repo clj-kondo/clj-kondo within /home/victor/Documents/tmp/refactorings using arit as detector.

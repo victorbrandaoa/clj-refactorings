@@ -1,16 +1,32 @@
 ---
 name: arit-smell-detection
-description: Use arit tool to detect code smells in clojure projects. Requires python3 and the arit binary configured via $ARIT_DIR.
-allowed-tools: Bash(python3 *) Read
+description: Use ARIT tool to detect code smells in clojure projects. Requires python3 and the arit binary configured via $ARIT_DIR.
 ---
 
-## Prerequisites
+## Instructions
 
-You need to have the arit binary in $ARIT_DIR/arit and have sourced the .env file in the project's root.
+Input:
+- Path to the project that will be analyzed;
+- Optional smells list to be considered;
 
-## Skill Instructions
+Output:
+- Json with the final scan result after filtering;
 
-You are going to run arit through scripts/scan.py passing the project_path as an argument.
+1. Go to ARIT directory using the command below:
+
+```sh
+source .env && cd $ARIT_DIR
+```
+
+2. Use the skill /git-helper to update the main/master branch of ARIT.
+
+3. Run the following command to generate ARIT's binary executable:
+
+```sh
+rm arit && go build -o arit .
+```
+
+4. Run ARIT through scripts/scan.py passing the project_path as an argument.
 
 Input:
 
@@ -36,3 +52,9 @@ Output:
     }
 ]
 ```
+
+5. Discard any occurrence whose `filepath` is a test file or benchmark file.
+
+6. If `smells` was given, also drop any entries whose `rule_id` is not in that list.
+
+7. If the filtered result is empty, stop here and report "no target smells found.".

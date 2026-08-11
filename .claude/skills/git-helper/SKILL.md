@@ -17,6 +17,7 @@ git diff
 git add <file>
 git commit -m "<message>"
 git pull origin <base> --rebase
+git pull origin main
 git status
 git checkout -b <branch>
 git push origin <branch>
