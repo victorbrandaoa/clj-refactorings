@@ -5,7 +5,6 @@ import json
 import os
 import subprocess
 import sys
-import json
 
 ALLOWED_RULES = [
     "production-doall",
@@ -30,9 +29,6 @@ def filter_results(raw_json: str) -> str:
         return raw_json  # no filter configured, return everything
 
     filtered = [r for r in results if r.get("rule_id") in ALLOWED_RULES]
-
-    if not filtered:
-        return "No code smells found matching the configured rules."
 
     return json.dumps(filtered, indent=2)
 

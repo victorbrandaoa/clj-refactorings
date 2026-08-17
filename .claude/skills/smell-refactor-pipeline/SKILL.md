@@ -22,12 +22,13 @@ Restrictions:
 ### Steps
 
 1. **Baseline scan** Invoke the skill `/arit-smell-detection` with `project_path` and `smells` (if passed) as arguments. Save the result as `<project_path>/scan-before.json`;
+  1.1. If there is no smell, just stop here and report that;
 
-2. **Test check** Ask @clj-tester to find out how to run the tests and confirm they are working using the skill `/test-discovery`.
+2. **Test check** Ask @clj-tester to find out how to run the tests and confirm they are working using the skill `/test-discovery`;
 
-3. **Refactor Loop** Run the skill `/refactor-loop` over `project_path` and with ``<project_path>/scan-before.json`;
+3. **Refactor Loop** Run the skill `/refactor-loop` over `project_path`, with `<project_path>/scan-before.json` as `code_smells`, the test command from previous step and `smells` (if passed) as arguments;
 
-4. **Report.** Produce output following the exact format below and save it to a file called `refactoring-report.md`:
+4. **Report.** Produce output following the exact format below and save it to a file called `<project_path>/refactoring-report.md`:
 
 ```md
 Project: [project-name]

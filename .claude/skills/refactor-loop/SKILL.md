@@ -11,11 +11,12 @@ Input:
 - `project_path` (required): absolute path to the target Clojure project;
 - `code_smells` (required): json file that show the smells found and their location;
 - `test_cmd` (required): command that executes the entire test suite of the project;
+- `smells` (optional, default: all smells reported by the detector): a list of `rule_id`s to restrict the pipeline to;
 
 Output:
 - `output.csv`: a csv file with the following columns:
   * `iter`: the iteration of the loop;
-  * `diff`: the production code diff at that iteration;
+  * `diff`: the code diff at that iteration (path to file);
   * `tests`: wether or not the test suite works at that iteration;
   * `agreement`: wether or not the agents agreed about the refactor;
   * `smells_solved`: the smells solved count at that iteration;
@@ -30,8 +31,9 @@ Important Notes:
 
 1. **Pre Execution** Create the following things before starting the loop:
   1.1. Create an index `i` to be used in the loop, starts with 1. (It will be used as `{i}` inside the loop);
-  1.2. Create a csv file `<project_path>/output.csv` with the columns: `iter`, `diff`, `tests`, `agreement` and `smells_solved`
-  1.3. Create a json file in `<project_path>/smells-count.json` with the following format and fill with the initial smell counts before starting the loop (initial i is 0):
+  1.2. Create a directory called `<project_path>/tmp/`;
+  1.3. Create a csv file `<project_path>/output.csv` with the columns: `iter`, `diff`, `tests`, `agreement` and `smells_solved`
+  1.4. Create a json file in `<project_path>/smells-count.json` with the following format and fill with the initial smell counts before starting the loop (initial i is 0):
   ```json
   {
     "{i}": {
@@ -47,7 +49,7 @@ Important Notes:
   3.1. If `{i}` is greater than 3, you must stop. End the execution of this skill in this case;
 
 4. **Plan and Apply the fix** Give @clj-developer the context from step 2 and ask to plan and apply the fix over the `project_path` for all the smells within the json `code_smells`;
-  4.1. Use the skill `/git-helper` to get the diffs of all production files at this iter (production only, you must ignore test changes);
+  4.1. Use the skill `/git-helper` to get all the diffs at this iter and save the diffs to `<project_path>/tmp/diffs_{i}.txt`;
 
 5. **Test** Ask @clj-tester to execute the test using the command `test_cmd` to verify they still finish successfully and save the execution log to `<project_path>/tmp/test_run_{i}.log`;
 
