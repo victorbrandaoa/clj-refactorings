@@ -12,5 +12,6 @@ Restrictions:
 - When running test suites, do not choose arbitrary timeouts, we can not predict how long it will take;
 - Everytime you start a test suite execution keep monitoring, do not lose track of it;
 - Do not let a test execution stuck;
+- Kill any orphan monitor process after tests finish;
 
 Your task is to find out which command runs successfully the entire test suite of a given clojure project, and to provide feedback regarding the test suite results.

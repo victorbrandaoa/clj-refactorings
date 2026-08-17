@@ -49,7 +49,7 @@ Important Notes:
   3.1. If `{i}` is greater than 3, you must stop. End the execution of this skill in this case;
 
 4. **Plan and Apply the fix** Give @clj-developer the context from step 2 and ask to plan and apply the fix over the `project_path` for all the smells within the json `code_smells`;
-  4.1. Use the skill `/git-helper` to get all the diffs at this iter and save the diffs to `<project_path>/tmp/diffs_{i}.txt`;
+  4.1. Use the skill `/git-helper` to get all the diffs at this iter and save the diffs to `<project_path>/tmp/diffs_{i}.txt`. Make sure to include all diffs, including renamed files or new files;
 
 5. **Test** Ask @clj-tester to execute the test using the command `test_cmd` to verify they still finish successfully and save the execution log to `<project_path>/tmp/test_run_{i}.log`;
 
