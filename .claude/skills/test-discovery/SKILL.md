@@ -17,12 +17,13 @@ Restrictions:
 
 1. Start looking at the project configuration files, and the documentation present on the project.
   1.1. If the project documentation has links to other documentations, you are allowed to retrieve them if necessary.
-  1.2. Identify which tool the project use for the build process and for running tests.
 
-2. Build the command that execute the enteri test suite of the project, and run it.
-  2.1. If the suite fail to run (missing tooling, unresolved dependency, broken build), stop here and report the blocker.
+2. Identify which tool the project use for the build process and for running tests.
 
-3. When the tests run successfully finishes, you must write the exact commands that worked on the output and add any note you might think it is important. Follow the template below:
+3. Build the command that execute the enteri test suite of the project, and run it.
+  3.1. If the suite fail to run (missing tooling, unresolved dependency, broken build), stop here and report the blocker.
+
+4. When the tests run successfully finishes, you must write the exact commands that worked on the output and add any note you might think it is important. Follow the template below:
 
 ```md
 # Command to run tests
