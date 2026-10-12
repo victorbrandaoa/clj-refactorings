@@ -1,0 +1,35 @@
+group,rule_id
+State & Concurrency,immutability-violation
+State & Concurrency,blocking-inside-go
+State & Concurrency,nested-atoms
+State & Concurrency,misuse-of-dynamic-scope
+State & Concurrency,overengineering-with-core-async
+State & Concurrency,dynamically-scoped-singleton-resource
+State & Concurrency,unnecessary-laziness
+Environment & Idioms,unmanaged-resource-io
+Environment & Idioms,relying-on-load-time-side-effects
+Environment & Idioms,namespace-load-side-effects
+Environment & Idioms,multiple-evaluation-in-macros
+Environment & Idioms,direct-use-of-clojure-lang-rt
+Environment & Idioms,unnecessary-macros
+Environment & Idioms,production-doall
+Environment & Idioms,misuse-of-channel-closing-semantics
+Environment & Idioms,refs-in-dependency-vector
+Environment & Idioms,improper-emptiness-check
+Environment & Idioms,unnecessary-into
+Module Boundaries & Data Contracts,monolithic-namespace-split
+Module Boundaries & Data Contracts,implicit-namespace-dependencies
+Module Boundaries & Data Contracts,marker-protocol
+Module Boundaries & Data Contracts,single-segment-namespace
+Module Boundaries & Data Contracts,private-multimethods
+Module Boundaries & Data Contracts,non-idiomatic-record-construction
+Module Boundaries & Data Contracts,excessive-refers
+Module Boundaries & Data Contracts,map-with-nil-values
+Module Boundaries & Data Contracts,non-idiomatic-parameter-binding
+Logic Flow & Readability,conditional-build-up
+Logic Flow & Readability,nested-forms
+Logic Flow & Readability,misused-threading
+Logic Flow & Readability,case-with-non-literal-test-values
+Logic Flow & Readability,thread-ignorance
+Logic Flow & Readability,verbose-checks
+Logic Flow & Readability,redundant-do-block
